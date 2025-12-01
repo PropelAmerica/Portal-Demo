@@ -82,31 +82,33 @@ function ProfileViewer({ profileId }) {
 
   return (
     <div className={styles.container}>
-      {requirements.length === 0 ? (
-        <div className={styles.noRequirements}>No requirements found</div>
-      ) : (
-        requirements.map((requirement) => (
-          <div key={requirement.id} className={styles.requirementCard}>
-            <h3>{requirement.requirement_name}</h3>
-            <p>Due Date: {requirement.due_date}</p>
-            <p>Status: {requirement.status}</p>
-            <button
-              className={styles.uploadButton}
-              onClick={() => handleUploadClick(requirement)}
-            >
-              Upload {requirement.requirement_name}
-            </button>
-            <div>
+      <div className={styles.requirementsWrapper}>
+        {requirements.length === 0 ? (
+          <div className={styles.noRequirements}>No requirements found</div>
+        ) : (
+          requirements.map((requirement) => (
+            <div key={requirement.id} className={styles.requirementCard}>
+              <h3>{requirement.requirement_name}</h3>
+              <p>Due Date: {requirement.due_date}</p>
+              <p>Status: {requirement.status}</p>
               <button
-                className={styles.linkButton}
-                onClick={() => handleHelpClick(requirement)}
+                className={styles.uploadButton}
+                onClick={() => handleUploadClick(requirement)}
               >
-                How do I get this?
+                Upload {requirement.requirement_name}
               </button>
+              <div>
+                <button
+                  className={styles.linkButton}
+                  onClick={() => handleHelpClick(requirement)}
+                >
+                  How do I get this?
+                </button>
+              </div>
             </div>
-          </div>
-        ))
-      )}
+          ))
+        )}
+      </div>
 
       {selectedRequirement && (
         <FormModal
