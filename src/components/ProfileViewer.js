@@ -90,6 +90,7 @@ function ProfileViewer({ profileId }) {
             const needsAttention =
               requirement.status?.toLowerCase() === 'incomplete' ||
               requirement.status?.toLowerCase() === 'not started';
+            const isComplete = requirement.status?.toLowerCase() === 'complete';
 
             return (
               <div key={requirement.id} className={styles.requirementCard}>
@@ -102,6 +103,7 @@ function ProfileViewer({ profileId }) {
                 <button
                   className={styles.uploadButton}
                   onClick={() => handleUploadClick(requirement)}
+                  disabled={isComplete}
                 >
                   Upload {requirement.requirement_name}
                 </button>
