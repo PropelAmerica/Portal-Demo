@@ -21,6 +21,23 @@
   color: #c1c2c5;
   display: flex;
   flex-direction: column;
+  position: relative;
+}
+
+.statusIcon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #fa5252;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.25rem;
+  font-weight: bold;
 }
 
 .requirementCard h3 {

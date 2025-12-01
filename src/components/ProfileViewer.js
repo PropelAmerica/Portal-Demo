@@ -86,27 +86,36 @@ function ProfileViewer({ profileId }) {
         {requirements.length === 0 ? (
           <div className={styles.noRequirements}>No requirements found</div>
         ) : (
-          requirements.map((requirement) => (
-            <div key={requirement.id} className={styles.requirementCard}>
-              <h3>{requirement.requirement_name}</h3>
-              <p>Due Date: {requirement.due_date}</p>
-              <p>Status: {requirement.status}</p>
-              <button
-                className={styles.uploadButton}
-                onClick={() => handleUploadClick(requirement)}
-              >
-                Upload {requirement.requirement_name}
-              </button>
-              <div>
+          requirements.map((requirement) => {
+            const needsAttention =
+              requirement.status?.toLowerCase() === 'incomplete' ||
+              requirement.status?.toLowerCase() === 'not started';
+
+            return (
+              <div key={requirement.id} className={styles.requirementCard}>
+                {needsAttention && (
+                  <div className={styles.statusIcon}>!</div>
+                )}
+                <h3>{requirement.requirement_name}</h3>
+                <p>Due Date: {requirement.due_date}</p>
+                <p>Status: {requirement.status}</p>
                 <button
-                  className={styles.linkButton}
-                  onClick={() => handleHelpClick(requirement)}
+                  className={styles.uploadButton}
+                  onClick={() => handleUploadClick(requirement)}
                 >
-                  How do I get this?
+                  Upload {requirement.requirement_name}
                 </button>
+                <div>
+                  <button
+                    className={styles.linkButton}
+                    onClick={() => handleHelpClick(requirement)}
+                  >
+                    How do I get this?
+                  </button>
+                </div>
               </div>
-            </div>
-          ))
+            );
+          })
         )}
       </div>
 
