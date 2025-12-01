@@ -1,0 +1,57 @@
+.overlay {
+  background-color: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
+}
+
+.modalContent {
+  background-color: #25262b !important;
+}
+
+.modalHeader {
+  background-color: #25262b !important;
+  border-bottom: 1px solid #373a40 !important;
+}
+
+.modalBody {
+  background-color: #25262b !important;
+  color: #c1c2c5 !important;
+}
+
+.modalTitle {
+  color: #ffffff !important;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.helpContent {
+  color: #c1c2c5;
+}
+
+.helpText {
+  font-size: 1rem;
+  line-height: 1.6;
+  white-space: pre-line;
+  margin-bottom: 1.5rem;
+  color: #c1c2c5;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.closeButton {
+  background-color: #228be6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.625rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.closeButton:hover {
+  background-color: #1c7ed6;
+}

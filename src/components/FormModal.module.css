@@ -1,0 +1,121 @@
+.modalTitle {
+  color: #ffffff;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.modalBody {
+  padding: 0;
+}
+
+.iframeContainer {
+  width: 100%;
+  height: 600px;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: #ffffff;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem 0;
+}
+
+.cancelButton {
+  background-color: #495057;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.625rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.cancelButton:hover {
+  background-color: #343a40;
+}
+
+.warningTitle {
+  color: #fa5252;
+  font-weight: 600;
+}
+
+.warningText {
+  color: #c1c2c5;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.warningButtons {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+}
+
+.continueButton {
+  background-color: #228be6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.625rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.continueButton:hover {
+  background-color: #1c7ed6;
+}
+
+.confirmCloseButton {
+  background-color: #fa5252;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.625rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.confirmCloseButton:hover {
+  background-color: #e03131;
+}
+
+.successContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  background-color: #25262b;
+  border-radius: 8px;
+}
+
+.successMessage {
+  text-align: center;
+  padding: 2rem;
+}
+
+.successMessage h2 {
+  color: #51cf66;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.successMessage p {
+  color: #c1c2c5;
+  font-size: 1.25rem;
+}

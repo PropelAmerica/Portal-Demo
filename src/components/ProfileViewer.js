@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
 import { getProfileById, getParticipantRequirements } from '../api/profiles';
+import { getFormUrlForRequirement, getHelpTextForRequirement } from '../config/requirementTypes';
+import FormModal from './FormModal';
+import HelpModal from './HelpModal';
 import styles from './ProfileViewer.module.css';
 
 function ProfileViewer({ profileId }) {
@@ -7,6 +10,10 @@ function ProfileViewer({ profileId }) {
   const [requirements, setRequirements] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedRequirement, setSelectedRequirement] = useState(null);
+  const [helpModalOpen, setHelpModalOpen] = useState(false);
+  const [helpRequirement, setHelpRequirement] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -48,6 +55,31 @@ function ProfileViewer({ profileId }) {
     return <div className={styles.error}>No profile found</div>;
   }
 
+  const handleUploadClick = (requirement) => {
+    const formUrl = getFormUrlForRequirement(requirement.requirement_name);
+    if (formUrl) {
+      setSelectedRequirement(requirement);
+      setModalOpen(true);
+    } else {
+      alert('No form available for this requirement type.');
+    }
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+    setSelectedRequirement(null);
+  };
+
+  const handleHelpClick = (requirement) => {
+    setHelpRequirement(requirement);
+    setHelpModalOpen(true);
+  };
+
+  const handleCloseHelpModal = () => {
+    setHelpModalOpen(false);
+    setHelpRequirement(null);
+  };
+
   return (
     <div className={styles.container}>
       {requirements.length === 0 ? (
@@ -58,16 +90,40 @@ function ProfileViewer({ profileId }) {
             <h3>{requirement.requirement_name}</h3>
             <p>Due Date: {requirement.due_date}</p>
             <p>Status: {requirement.status}</p>
-            <button className={styles.uploadButton}>
+            <button
+              className={styles.uploadButton}
+              onClick={() => handleUploadClick(requirement)}
+            >
               Upload {requirement.requirement_name}
             </button>
             <div>
-              <button className={styles.linkButton}>
+              <button
+                className={styles.linkButton}
+                onClick={() => handleHelpClick(requirement)}
+              >
                 How do I get this?
               </button>
             </div>
           </div>
         ))
+      )}
+
+      {selectedRequirement && (
+        <FormModal
+          isOpen={modalOpen}
+          onClose={handleCloseModal}
+          formUrl={`${getFormUrlForRequirement(selectedRequirement.requirement_name)}?app_id=${profile.application_id}`}
+          requirementName={selectedRequirement.requirement_name}
+        />
+      )}
+
+      {helpRequirement && (
+        <HelpModal
+          isOpen={helpModalOpen}
+          onClose={handleCloseHelpModal}
+          requirementName={helpRequirement.requirement_name}
+          helpText={getHelpTextForRequirement(helpRequirement.requirement_name)}
+        />
       )}
     </div>
   );
